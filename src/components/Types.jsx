@@ -1,36 +1,34 @@
-import { Grid, Chip, Slide } from "@mui/material";
-import * as typeColors from "../data/typeColors.json";
-import capitalize from "../utils/captialize";
-import newShade from "../utils/newShade";
+import { Grid, Chip, Slide } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import capitalize from '../utils/captialize';
 
 const Types = (props) => {
+  const theme = useTheme();
+  const { primary, secondary } = theme.palette;
   const { types } = props;
-  let typeStyleArr = [];
 
-  const getTypeStyle = (colorName) => {
-    return {
-      background: `linear-gradient(180deg, ${typeColors[colorName]} 0%, ${newShade(typeColors[colorName], 40)} 100%)`,
-      fallbacks: [
-        {
-          background: typeColors[colorName],
-        },
-      ],
-      color: "white",
-      fontWeight: "bold",
-      mx: 1,
-      width: "50%",
-    };
+  const backgrounds = [
+    `linear-gradient(180deg, ${primary.light} 0%, ${primary.main} 100%)`,
+    `linear-gradient(180deg, ${secondary.light} 0%, ${secondary.main} 100%)`,
+  ];
+
+  const typeStyle = {
+    fallbacks: [
+      {
+        background: primary.main,
+      },
+    ],
+    color: 'white',
+    fontWeight: 'bold',
+    mx: 1,
+    width: '25%',
   };
 
-  types.forEach((type) => {
-    typeStyleArr.push(getTypeStyle(type.type.name));
-  });
-
   return (
-    <Grid item xs={12} textAlign="center" mb={3} sx={types.length > 1 && { display: "flex" }}>
-      {props.types.map((type, idx) => (
-        <Slide in={true} direction={idx === 0 ? 'right' : 'left'}timeout={250}>
-          <Chip key={idx} label={capitalize(type.type.name)} sx={typeStyleArr[idx]}></Chip>
+    <Grid item xs={12} textAlign='center' mb={3} sx={types.length > 1 && { display: 'flex', justifyContent: 'center'}}>
+      {types.map((type, idx) => (
+        <Slide in={true} direction={idx === 0 ? 'right' : 'left'} timeout={250}>
+          <Chip key={idx} label={capitalize(type.type.name)} sx={{...typeStyle, ...{background: backgrounds[idx]}}}></Chip>
         </Slide>
       ))}
     </Grid>

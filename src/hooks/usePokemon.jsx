@@ -15,7 +15,6 @@ const usePokemon = (id) => {
       setEvolutionData(tempEvolutionData);
       setIsLoaded(true);
     };
-
     setData();
   }, [id]);
 

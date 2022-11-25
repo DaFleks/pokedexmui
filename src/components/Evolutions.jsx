@@ -1,14 +1,16 @@
 import { Grid, Typography, Stack, Box, Divider, Zoom } from "@mui/material";
-import * as typeColors from "../data/typeColors.json";
+import { useTheme } from "@mui/material/styles";
 import capitalize from "../utils/captialize";
 import padZeroes from "../utils/padZeroes";
 
 const Evolutions = (props) => {
-  const { evolutionData, types } = props;
-  const type = types[0].type.name;
+  const theme = useTheme();
+  const { primary } = theme.palette;
+
+  const { evolutionData } = props;
 
   //  Styles
-  const dividerStyle = { color: typeColors[type], fontWeight: "bold", fontSize: "0.75rem" };
+  const dividerStyle = { color: primary.dark, fontWeight: "bold", fontSize: "0.75rem" };
   const pokemonStyle = { display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", fontWeight: "bold" };
 
   return (

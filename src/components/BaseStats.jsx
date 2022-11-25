@@ -1,10 +1,12 @@
 import { Grid, Stack, Box, Typography, LinearProgress, Grow } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useEffect, useState } from "react";
-import * as typeColor from "../data/typeColors.json";
+import { useTheme } from "@mui/material/styles";
 
 const BaseStats = (props) => {
-  const { stats, types } = props;
+  const theme = useTheme();
+  const { primary } = theme.palette;
+
+  const { stats } = props;
   const statNames = ["HP", "ATK", "DEF", "SP. ATK", "SP. DEF", "SPD"];
   const getStatPercentage = (stat) => Math.round((stat / 255) * 100);
 
@@ -26,7 +28,6 @@ const BaseStats = (props) => {
   const progressStyle = {
     fontSize: "0.75rem",
     fontWeight: "bold",
-    color: typeColor[types[0].type.name],
   };
 
   //  State
@@ -46,7 +47,7 @@ const BaseStats = (props) => {
           {pkStats.map((pkStat, idx) => (
             <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
               <Box width="15%" textAlign="right">
-                <Typography variant="p" sx={progressStyle}>
+                <Typography color={primary.dark} variant="p" sx={progressStyle}>
                   {statNames[idx]}
                 </Typography>
               </Box>
@@ -54,7 +55,7 @@ const BaseStats = (props) => {
                 <LinearProgress variant="determinate" value={getStatPercentage(pkStat)} />
               </Box>
               <Box width="15%">
-                <Typography variant="p" sx={progressStyle}>
+                <Typography color={primary.dark} variant="p" sx={progressStyle}>
                   {pkStat.toFixed(0)}
                 </Typography>
               </Box>
