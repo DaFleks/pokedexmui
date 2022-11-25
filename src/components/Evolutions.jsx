@@ -1,4 +1,4 @@
-import { Grid, Typography, Stack, Box, Divider } from "@mui/material";
+import { Grid, Typography, Stack, Box, Divider, Zoom } from "@mui/material";
 import * as typeColors from "../data/typeColors.json";
 import capitalize from "../utils/captialize";
 import padZeroes from "../utils/padZeroes";
@@ -25,15 +25,17 @@ const Evolutions = (props) => {
                   Lv. {pk.level}
                 </Divider>
               )}
-              <Box sx={pokemonStyle}>
-                <img src={pk.image} alt={capitalize(pk.name)} width="100%" />
-                <Typography variant="p" sx={{ fontSize: "0.8rem" }}>
-                  {capitalize(pk.name)}
-                </Typography>
-                <Typography variant="p" sx={{ fontSize: "0.75rem", color: "grey" }}>
-                  {padZeroes(pk.id)}
-                </Typography>
-              </Box>
+              <Zoom in={true} timeout={500}>
+                <Box sx={pokemonStyle}>
+                  <img src={pk.image} alt={capitalize(pk.name)} width="100%" />
+                  <Typography variant="p" sx={{ fontSize: "0.8rem" }}>
+                    {capitalize(pk.name)}
+                  </Typography>
+                  <Typography variant="p" sx={{ fontSize: "0.75rem", color: "grey" }}>
+                    {padZeroes(pk.id)}
+                  </Typography>
+                </Box>
+              </Zoom>
             </>
           ))}
         </Stack>

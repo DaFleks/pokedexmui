@@ -1,4 +1,4 @@
-import { Grid, Typography, Box, stepClasses } from "@mui/material";
+import { Grid, Typography, Box, Zoom } from "@mui/material";
 import * as typeColors from "../data/typeColors.json";
 import capitalize from "../utils/captialize";
 import padZeroes from "../utils/padZeroes";
@@ -35,9 +35,12 @@ const Header = (props) => {
     <Grid container>
       <Grid item xs={12} textAlign="center">
         <Box sx={HeaderWrap}></Box>
-        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <img src={`${imgUrl}${id}.png`} alt={name} width="200px" />
-        </Box>
+        <Zoom in={true} timeout={300}>
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <img src={`${imgUrl}${id}.png`} alt={name} width="200px" />
+          </Box>
+        </Zoom>
+
         <Box mb={3} textAlign="center">
           <Typography variant="h3">{capitalize(name)}</Typography>
           <Typography variant="p" sx={{ fontWeight: "bold", color: "grey" }}>

@@ -1,4 +1,4 @@
-import { Grid, Chip } from "@mui/material";
+import { Grid, Chip, Slide } from "@mui/material";
 import * as typeColors from "../data/typeColors.json";
 import capitalize from "../utils/captialize";
 import newShade from "../utils/newShade";
@@ -27,9 +27,11 @@ const Types = (props) => {
   });
 
   return (
-    <Grid item xs={12} textAlign="center" mb={3} sx={types.length > 1 && {display: 'flex'}}>
+    <Grid item xs={12} textAlign="center" mb={3} sx={types.length > 1 && { display: "flex" }}>
       {props.types.map((type, idx) => (
-        <Chip key={idx} label={capitalize(type.type.name)} sx={typeStyleArr[idx]}></Chip>
+        <Slide in={true} direction={idx === 0 ? 'right' : 'left'}timeout={250}>
+          <Chip key={idx} label={capitalize(type.type.name)} sx={typeStyleArr[idx]}></Chip>
+        </Slide>
       ))}
     </Grid>
   );
