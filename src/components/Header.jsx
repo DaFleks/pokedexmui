@@ -1,4 +1,4 @@
-import { Grid, Typography, Box } from "@mui/material";
+import { Grid, Typography, Box, stepClasses } from "@mui/material";
 import * as typeColors from "../data/typeColors.json";
 import capitalize from "../utils/captialize";
 import padZeroes from "../utils/padZeroes";
@@ -19,9 +19,9 @@ const Header = (props) => {
         background: typeColors[colorName],
       },
     ],
-    borderBottomLeftRadius: "100%",
-    borderBottomRightRadius: "100%",
-    height: "150px",
+    borderBottomLeftRadius: "50%",
+    borderBottomRightRadius: "50%",
+    height: "125px",
     position: "absolute",
     top: "0px",
     right: "0px",
@@ -32,7 +32,7 @@ const Header = (props) => {
   };
 
   return (
-    <Grid container mt={2}>
+    <Grid container>
       <Grid item xs={12} textAlign="center">
         <Box sx={HeaderWrap}></Box>
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>

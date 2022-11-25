@@ -16,9 +16,7 @@ const usePokemon = (id) => {
       setIsLoaded(true);
     };
 
-    setTimeout(() => {
-      setData();
-    }, 1000);
+    setData();
   }, [id]);
 
   return [pokemonData, evolutionData, isLoaded];
@@ -34,8 +32,7 @@ const fetchData = (url) => {
 
 const getEvolutionChain = (data) => {
   return new Promise(async (resolve) => {
-    const url =
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
+    const url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
 
     let evolutionArr = [
       {
@@ -59,8 +56,7 @@ const getEvolutionChain = (data) => {
 const getPokemonId = (str) => parseInt(str.slice(42));
 
 const pushPokemon = (arr, data) => {
-  const url =
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
+  const url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
 
   arr.push({
     name: data.species.name,
