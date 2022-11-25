@@ -15,7 +15,8 @@ const Pokedex = (props) => {
                     <>
                         <Header id={pokemonData.id} name={pokemonData.name} types={pokemonData.types} />
                         <Types types={pokemonData.types} />
-                        <Evolutions evolutionData={evolutionData} types={pokemonData.types} />
+                        {evolutionData.length > 1 && <Evolutions evolutionData={evolutionData} types={pokemonData.types} />}
+
                     </> :
                     <Grid container height="100vh" justifyContent="center" alignItems="center">
                         <CircularProgress />

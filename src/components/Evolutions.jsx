@@ -23,7 +23,7 @@ const Evolutions = (props) => {
               )}
               <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", fontWeight: "bold" }}>
                 <img src={pk.image} alt={capitalize(pk.name)} width="100%" />
-                <Typography variant="p">{capitalize(pk.name)}</Typography>
+                <Typography variant="p" sx={{fontSize: '0.8rem'}}>{capitalize(pk.name)}</Typography>
                 <Typography variant="p" sx={{ fontSize: "0.75rem", color: "grey" }}>
                   {padZeroes(pk.id)}
                 </Typography>
