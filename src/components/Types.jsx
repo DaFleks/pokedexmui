@@ -4,14 +4,12 @@ import capitalize from "../utils/captialize";
 import newShade from "../utils/newShade";
 
 const Types = (props) => {
+  const { types } = props;
   let typeStyleArr = [];
 
   const getTypeStyle = (colorName) => {
     return {
-      background: `linear-gradient(180deg, ${typeColors[colorName]} 0%, ${newShade(
-        typeColors[colorName],
-        40
-      )} 100%)`,
+      background: `linear-gradient(180deg, ${typeColors[colorName]} 0%, ${newShade(typeColors[colorName], 40)} 100%)`,
       fallbacks: [
         {
           background: typeColors[colorName],
@@ -20,15 +18,16 @@ const Types = (props) => {
       color: "white",
       fontWeight: "bold",
       mx: 1,
+      width: "50%",
     };
   };
 
-  props.types.forEach((type) => {
+  types.forEach((type) => {
     typeStyleArr.push(getTypeStyle(type.type.name));
   });
 
   return (
-    <Grid item xs={12} textAlign="center" mb={3}>
+    <Grid item xs={12} textAlign="center" mb={3} sx={types.length > 1 && {display: 'flex'}}>
       {props.types.map((type, idx) => (
         <Chip key={idx} label={capitalize(type.type.name)} sx={typeStyleArr[idx]}></Chip>
       ))}
