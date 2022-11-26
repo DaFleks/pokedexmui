@@ -7,7 +7,6 @@ function App() {
 
   const getId = (id) => id > 0 ? id : 1;
 
-
   return (
     <div className="App">
       <Routes>
