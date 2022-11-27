@@ -1,12 +1,14 @@
-import { Grid, Stack, Box, Typography, LinearProgress, Grow } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Grid, Stack, Box, Typography, LinearProgress } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { PokemonContext } from "../contexts/PokemonContext";
 
-const BaseStats = (props) => {
+const BaseStats = () => {
   const theme = useTheme();
   const { primary } = theme.palette;
 
-  const { stats } = props;
+  const { stats } = useContext(PokemonContext);
   const statNames = ["HP", "ATK", "DEF", "SP. ATK", "SP. DEF", "SPD"];
   const getStatPercentage = (stat) => Math.round((stat / 255) * 100);
 
@@ -35,17 +37,16 @@ const BaseStats = (props) => {
 
   useEffect(() => {
     animateStats();
-  }, []);
+  }, [stats]);
 
   return (
     <Grid item xs={12} my={3}>
       <Typography variant="h6" sx={{ fontWeight: "bold" }} textAlign="center" mb={2}>
         Base Stats
       </Typography>
-      <Grow in={true} timeout={300}>
         <Stack>
           {pkStats.map((pkStat, idx) => (
-            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <Box key={idx} sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
               <Box width="15%" textAlign="right">
                 <Typography color={primary.dark} variant="p" sx={progressStyle}>
                   {statNames[idx]}
@@ -62,7 +63,6 @@ const BaseStats = (props) => {
             </Box>
           ))}
         </Stack>
-      </Grow>
     </Grid>
   );
 };

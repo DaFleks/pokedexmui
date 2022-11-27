@@ -1,11 +1,13 @@
-import { Grid, Chip, Slide } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import capitalize from '../utils/captialize';
+import { Grid, Chip } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import capitalize from "../utils/captialize";
+import { useContext } from "react";
+import { PokemonContext } from "../contexts/PokemonContext";
 
-const Types = (props) => {
+const Types = () => {
   const theme = useTheme();
   const { primary, secondary } = theme.palette;
-  const { types } = props;
+  const { types } = useContext(PokemonContext);
 
   const backgrounds = [
     `linear-gradient(180deg, ${primary.light} 0%, ${primary.main} 100%)`,
@@ -18,18 +20,17 @@ const Types = (props) => {
         background: primary.main,
       },
     ],
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
     mx: 1,
-    width: '25%',
+    width: "25%",
   };
 
   return (
-    <Grid item xs={12} textAlign='center' mb={3} sx={types.length > 1 && { display: 'flex', justifyContent: 'center'}}>
+    //  Reason I used ? instead of &&, browser was giving me grief if length was 0 and nothing was passed in sx, temp fix
+    <Grid item xs={12} textAlign="center" mb={3} sx={types.length > 1 ? { display: "flex", justifyContent: "center" } : {}}>
       {types.map((type, idx) => (
-        <Slide in={true} direction={idx === 0 ? 'right' : 'left'} timeout={250}>
-          <Chip key={idx} label={capitalize(type.type.name)} sx={{...typeStyle, ...{background: backgrounds[idx]}}}></Chip>
-        </Slide>
+        <Chip key={idx} label={capitalize(type.type.name)} sx={{ ...typeStyle, ...{ background: backgrounds[idx] } }}></Chip>
       ))}
     </Grid>
   );

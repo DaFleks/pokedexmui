@@ -56,10 +56,27 @@ const getPokemonId = (str) => parseInt(str.slice(42));
 
 const pushPokemon = (arr, data) => {
   const url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
+  let evolveMethod = data.evolution_details[0].min_level;
+  
+  if (!data.evolution_details[0].min_level) {
+    if (data.evolution_details[0].trigger.name === 'trade') {
+      evolveMethod = 'Trade';
+    } else {
+      console.log(data.species.name)
+      try {
+        evolveMethod = data.evolution_details[0].item.name;
+      } catch (e) {
+        console.log(e);
+      } finally {
+        evolveMethod = '?';
+      }
+
+    }
+  }
 
   arr.push({
     name: data.species.name,
-    level: data.evolution_details[0].min_level,
+    level: evolveMethod,
     image: `${url}${getPokemonId(data.species.url)}.png`,
     id: getPokemonId(data.species.url),
   });
