@@ -31,25 +31,25 @@ const Pokedex = () => {
 
     // Styles
     const ContainerStyles = {
-        overflowX: 'hidden', justifyContent: "center", alignItems: "center", minWidth: '300px', flexGrow: 1
+        overflowX: 'hidden', justifyContent: "center", alignItems: "center", minWidth: '300px', flexGrow: 1,
     }
 
     return (
         <ThemeProvider theme={theme}>
-            <Container maxWidth="xs" sx={ContainerStyles}>
-                {isLoaded ?
-                    <>
-                        <Header />
-                        <Types />
-                        <HeightWeight />
-                        {nEvolves > 1 && <Evolutions />}
-                        <BaseStats />
-                    </> :
-                    <Grid container minHeight="100vh" justifyContent='center' alignItems='center'>
-                        <CircularProgress />
-                    </Grid>
-                }
-            </Container>
+                <Container maxWidth="xs" sx={ContainerStyles}>
+                    {isLoaded ?
+                        <>
+                            <Header />
+                            <Types />
+                            <HeightWeight />
+                            {nEvolves > 1 && <Evolutions />}
+                            <BaseStats />
+                        </> :
+                        <Grid container minHeight="100vh" justifyContent='center' alignItems='center'>
+                            <CircularProgress />
+                        </Grid>
+                    }
+                </Container>
         </ThemeProvider>
     )
 }

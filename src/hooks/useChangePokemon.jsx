@@ -9,6 +9,7 @@ const useChangePokemon = () => {
     setActive(!active);
 
     setTimeout(() => {
+      setIsLoaded(false);
       navigate(`/${id}`);
     }, 300);
   };

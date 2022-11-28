@@ -19,7 +19,11 @@ const NavBottom = () => {
 
   return (
     <Paper elevation={3} sx={{ position: "sticky", bottom: 0, overflow: "hidden", borderRadius: "0" }}>
-      <BottomNavigation value={navOption} onChange={handleChange}>
+      <BottomNavigation
+        value={navOption}
+        onChange={handleChange}
+
+      >
         <BottomNavigationAction icon={<SearchIcon />}></BottomNavigationAction>
         <BottomNavigationAction
           onClick={() => {

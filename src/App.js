@@ -1,4 +1,4 @@
-import { CssBaseline } from '@mui/material';
+import { CssBaseline, Box } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
 import Pokedex from './pages/Pokedex';
 import NavBottom from './components/NavBottom';
@@ -11,12 +11,14 @@ function App() {
       <CssBaseline>
         <NavProvider>
           <PokemonProvider>
-            <Routes>
-              {/* TODO: SEARCH */}
-              <Route path="*" element={<Pokedex />}></Route>
-              {/* TODO: SETTINGS */}
-            </Routes>
-            <NavBottom />
+            <Box sx={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
+              <Routes>
+                {/* TODO: SEARCH */}
+                <Route path="*" element={<Pokedex />}></Route>
+                {/* TODO: SETTINGS */}
+              </Routes>
+              <NavBottom />
+            </Box>
           </PokemonProvider>
         </NavProvider>
       </CssBaseline>

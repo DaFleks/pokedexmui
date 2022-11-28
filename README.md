@@ -1,8 +1,8 @@
-# Pokedex (Material UI)
+# React Pokedex (Material UI Project)
 
 <p float="left">
-<img src="https://i.ibb.co/Tk7QL3w/localhost-3000-9-i-Phone-12-Pro.png" width="375" />
-<img src="https://i.ibb.co/n1GkC89/localhost-3000-304-i-Phone-12-Pro.png" width="375" />
-<img src="https://i.ibb.co/CVhTZS9/localhost-3000-gyarados-i-Phone-12-Pro.png" width="375" />
-<img src="https://i.ibb.co/JtPSM7x/localhost-3000-regigigas-i-Phone-12-Pro.png" width="375" />
+<img src="https://i.ibb.co/XyRTP7X/192-168-2-63-3000-gastly-i-Phone-XR.png" width="375" />
+<img src="https://i.ibb.co/1s57Q2y/192-168-2-63-3000-celebi-i-Phone-XR.png" width="375" />
+<img src="https://i.ibb.co/VMr2xXn/192-168-2-63-3000-froslass-i-Phone-XR.png" width="375" />
+<img src="https://i.ibb.co/zFV2ZPD/192-168-2-63-3000-149-i-Phone-XR.png" width="375" />
 </p>
