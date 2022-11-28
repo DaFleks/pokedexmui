@@ -4,13 +4,12 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import SearchIcon from "@mui/icons-material/Search";
 import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { PokemonContext } from "../contexts/PokemonContext";
-import useChangePokemon from "../hooks/useChangePokemon";
-import { useContext } from "react";
+import { usePokemonContext } from "../contexts/PokemonContext";
 import { useNavContext } from "../contexts/NavContext";
+import useChangePokemon from "../hooks/useChangePokemon";
 
 const NavBottom = () => {
-  const { id } = useContext(PokemonContext);
+  const { id } = usePokemonContext();
   const [changePokemon] = useChangePokemon();
   const { navOption, setNavOption } = useNavContext();
 

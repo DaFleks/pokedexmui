@@ -1,10 +1,9 @@
 import { Grid, Stack, Divider, Box, Typography, Fade } from "@mui/material";
-import { getFeet, getPounds } from "../utils/converters";
-import { useContext } from "react";
-import { PokemonContext } from "../contexts/PokemonContext";
+import { getFeet, getPounds } from "../utils/utilities";
+import { usePokemonContext } from "../contexts/PokemonContext";
 
-const GeneralInfo = () => {
-  const { height, weight, active } = useContext(PokemonContext);
+const HeightWeight = () => {
+  const { height, weight, active } = usePokemonContext();
 
   return (
     <Grid item xs={12} mb={3}>
@@ -28,4 +27,4 @@ const GeneralInfo = () => {
   );
 };
 
-export default GeneralInfo;
+export default HeightWeight;

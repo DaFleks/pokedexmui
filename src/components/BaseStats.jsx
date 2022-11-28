@@ -1,14 +1,13 @@
 import { Grid, Stack, Box, Typography, LinearProgress, Fade } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
-import { useContext } from "react";
-import { PokemonContext } from "../contexts/PokemonContext";
+import { usePokemonContext } from "../contexts/PokemonContext";
 
 const BaseStats = () => {
   const theme = useTheme();
   const { primary } = theme.palette;
 
-  const { stats, active } = useContext(PokemonContext);
+  const { stats, active } = usePokemonContext();
   const statNames = ["HP", "ATK", "DEF", "SP. ATK", "SP. DEF", "SPD"];
   const getStatPercentage = (stat) => Math.round((stat / 255) * 100);
 

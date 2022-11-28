@@ -1,17 +1,9 @@
 import { Box, Zoom } from "@mui/material";
-import { useEffect, useContext } from "react";
-import { PokemonContext } from "../contexts/PokemonContext";
+import { usePokemonContext } from "../contexts/PokemonContext";
 
 const HeaderImage = () => {
   const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/`;
-  const { id, active, setActive } = useContext(PokemonContext);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (!active) setActive(true);
-      clearTimeout(timeout);
-    }, 300);
-  }, [id]);
+  const { id, active } = usePokemonContext();
 
   return (
     <Zoom in={active} timeout={300}>

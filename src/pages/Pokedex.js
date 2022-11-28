@@ -1,42 +1,56 @@
-import { Container, Grid, CircularProgress, Box } from '@mui/material';
-import { useContext, useEffect } from 'react';
-import { PokemonContext } from '../contexts/PokemonContext';
+import { useEffect } from 'react';
+import { Container, Grid, CircularProgress } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+import usePokemonTheme from '../hooks/usePokemonTheme';
+import { usePokemonContext } from '../contexts/PokemonContext';
+import { useNavContext } from '../contexts/NavContext';
 import Header from '../components/Header';
 import Types from '../components/Types';
 import Evolutions from '../components/Evolutions';
 import BaseStats from '../components/BaseStats';
-import GeneralInfo from '../components/GeneralInfo';
-import NavBottom from '../components/NavBottom';
-import { useNavContext } from '../contexts/NavContext';
+import HeightWeight from '../components/HeightWeight';
 
 const Pokedex = () => {
-    const { isLoaded, id, nEvolves } = useContext(PokemonContext);
+    // Hooks
+    const [theme] = usePokemonTheme();
+
+    // Context
+    const { isLoaded, id, nEvolves, active, setActive } = usePokemonContext();
     const { setNavOption } = useNavContext();
 
-    useEffect(() => { setNavOption(2) }, [id]);
+    // Effects
+    useEffect(() => {
+        //  Whenever Pokedex is rendered, put the Pokeball nav option active.
+        setNavOption(2)
 
+        //  If transitions are not active, activate them after 300ms (waiting for exit transition to finish).
+        setTimeout(() => {
+            !active && setActive(true);
+        }, 300);
+    }, [id]);
+
+    // Styles
     const ContainerStyles = {
         overflowX: 'hidden', justifyContent: "center", alignItems: "center", minWidth: '300px', flexGrow: 1
     }
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <Container maxWidth="md" sx={ContainerStyles}>
+        <ThemeProvider theme={theme}>
+            <Container maxWidth="xs" sx={ContainerStyles}>
                 {isLoaded ?
                     <>
                         <Header />
                         <Types />
-                        <GeneralInfo />
+                        <HeightWeight />
                         {nEvolves > 1 && <Evolutions />}
                         <BaseStats />
                     </> :
-                    <Grid container height='100vh' justifyContent='center' alignItems='center'>
+                    <Grid container minHeight="100vh" justifyContent='center' alignItems='center'>
                         <CircularProgress />
                     </Grid>
                 }
             </Container>
-            <NavBottom></NavBottom>
-        </Box>
+        </ThemeProvider>
     )
 }
 

@@ -2,12 +2,12 @@ import { Grid, Chip, Slide } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import capitalize from "../utils/captialize";
 import { useContext } from "react";
-import { PokemonContext } from "../contexts/PokemonContext";
+import { usePokemonContext } from "../contexts/PokemonContext";
 
 const Types = () => {
   const theme = useTheme();
   const { primary, secondary } = theme.palette;
-  const { types, active } = useContext(PokemonContext);
+  const { types, active } = usePokemonContext();
 
   const backgrounds = [
     `linear-gradient(180deg, ${primary.light} 0%, ${primary.main} 100%)`,

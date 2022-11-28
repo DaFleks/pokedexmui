@@ -1,19 +1,20 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import usePath from "../hooks/usePath";
 import usePokemon from "../hooks/usePokemon";
 
-export const PokemonContext = createContext();
+var PokemonContext = createContext();
+
+export const usePokemonContext = () => useContext(PokemonContext);
 
 const PokemonProvider = (props) => {
-  const [pokemonData, evolutionData, isLoaded] = usePokemon(usePath());
+  const [active, setActive] = useState(false);
+  const [pokemonData, evolutionData, isLoaded, setIsLoaded] = usePokemon(usePath());
 
   const { height, id, name, stats, types, weight } = pokemonData;
   const nEvolves = evolutionData.length;
 
-  const [active, setActive] = useState(false);
-
   return (
-    <PokemonContext.Provider value={{ pokemonData, evolutionData, isLoaded, height, id, name, stats, types, weight, nEvolves, active, setActive }}>
+    <PokemonContext.Provider value={{ pokemonData, evolutionData, isLoaded, setIsLoaded, height, id, name, stats, types, weight, nEvolves, active, setActive }}>
       {props.children}
     </PokemonContext.Provider>
   );

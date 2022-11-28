@@ -1,18 +1,16 @@
-import { PokemonContext } from "../contexts/PokemonContext";
-import { useContext } from "react";
+import { usePokemonContext } from "../contexts/PokemonContext";
 import { useNavigate } from "react-router-dom";
 
 const useChangePokemon = () => {
-  const { active, setActive } = useContext(PokemonContext);
+  const { active, setActive, setIsLoaded } = usePokemonContext();
   const navigate = useNavigate();
 
   const changePokemon = (id) => {
     setActive(!active);
-    
-    const timeout = setTimeout(()=>{
-        navigate(`/${id}`);
-        clearTimeout(timeout)
-    },300)
+
+    setTimeout(() => {
+      navigate(`/${id}`);
+    }, 300);
   };
 
   return [changePokemon];
