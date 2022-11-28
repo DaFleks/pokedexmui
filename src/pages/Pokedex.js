@@ -36,7 +36,7 @@ const Pokedex = () => {
 
     return (
         <ThemeProvider theme={theme}>
-                <Container maxWidth="xs" sx={ContainerStyles}>
+                <Container maxWidth="md" sx={ContainerStyles}>
                     {isLoaded ?
                         <>
                             <Header />
