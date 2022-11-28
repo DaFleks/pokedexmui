@@ -1,5 +1,5 @@
 import { Container, Grid, CircularProgress, Box } from '@mui/material';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { PokemonContext } from '../contexts/PokemonContext';
 import Header from '../components/Header';
 import Types from '../components/Types';
@@ -7,9 +7,14 @@ import Evolutions from '../components/Evolutions';
 import BaseStats from '../components/BaseStats';
 import GeneralInfo from '../components/GeneralInfo';
 import NavBottom from '../components/NavBottom';
+import { useNavContext } from '../contexts/NavContext';
 
 const Pokedex = () => {
-    const { isLoaded, types, nEvolves } = useContext(PokemonContext);
+    const { isLoaded, id, nEvolves } = useContext(PokemonContext);
+    const { setNavOption } = useNavContext();
+
+    useEffect(() => { setNavOption(2) }, [id]);
+
     const ContainerStyles = {
         overflowX: 'hidden', justifyContent: "center", alignItems: "center", minWidth: '300px', flexGrow: 1
     }

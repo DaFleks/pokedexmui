@@ -62,7 +62,6 @@ const pushPokemon = (arr, data) => {
     if (data.evolution_details[0].trigger.name === 'trade') {
       evolveMethod = 'Trade';
     } else {
-      console.log(data.species.name)
       try {
         evolveMethod = data.evolution_details[0].item.name;
       } catch (e) {
@@ -70,7 +69,6 @@ const pushPokemon = (arr, data) => {
       } finally {
         evolveMethod = '?';
       }
-
     }
   }
 

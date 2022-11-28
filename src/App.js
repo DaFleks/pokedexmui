@@ -2,6 +2,7 @@ import './App.css';
 import { CssBaseline } from '@mui/material';
 import { useState, useEffect, useContext } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import NavProvider from './contexts/NavContext';
 import Pokedex from './pages/Pokedex';
 import { Route, Routes } from 'react-router-dom';
 import { PokemonContext } from './contexts/PokemonContext';
@@ -46,12 +47,13 @@ function App() {
   return (
     <CssBaseline>
       <ThemeProvider theme={theme}>
-        <div className="App">
-          <Routes>
-            <Route path="*" element={<Pokedex />}></Route>
-          </Routes>
-        </div>
-
+        <NavProvider>
+          <div className="App">
+            <Routes>
+              <Route path="*" element={<Pokedex />}></Route>
+            </Routes>
+          </div>
+        </NavProvider>
       </ThemeProvider>
     </CssBaseline>
   );

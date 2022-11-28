@@ -1,4 +1,4 @@
-import { Grid, Stack, Box, Typography, LinearProgress } from "@mui/material";
+import { Grid, Stack, Box, Typography, LinearProgress, Fade } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
@@ -8,13 +8,13 @@ const BaseStats = () => {
   const theme = useTheme();
   const { primary } = theme.palette;
 
-  const { stats } = useContext(PokemonContext);
+  const { stats, active } = useContext(PokemonContext);
   const statNames = ["HP", "ATK", "DEF", "SP. ATK", "SP. DEF", "SPD"];
   const getStatPercentage = (stat) => Math.round((stat / 255) * 100);
 
   const animateStats = () => {
     let count = 1;
-    const maxCount = 100;
+    const maxCount = 10;
     const quotientsByMax = stats.map((stat) => stat.base_stat / maxCount);
     let addedStats = [...quotientsByMax];
     setPkStats(addedStats);
@@ -24,7 +24,7 @@ const BaseStats = () => {
       addedStats = addedStats.map((stat, idx) => (stat += quotientsByMax[idx]));
       setPkStats(addedStats);
       if (count === maxCount) clearInterval(animate);
-    }, 1);
+    }, 100);
   };
 
   const progressStyle = {
@@ -40,10 +40,11 @@ const BaseStats = () => {
   }, [stats]);
 
   return (
-    <Grid item xs={12} my={3}>
-      <Typography variant="h6" sx={{ fontWeight: "bold" }} textAlign="center" mb={2}>
-        Base Stats
-      </Typography>
+    <Fade in={active} timeout={300}>
+      <Grid item xs={12} my={3}>
+        <Typography variant="h6" sx={{ fontWeight: "bold" }} textAlign="center" mb={2}>
+          Base Stats
+        </Typography>
         <Stack>
           {pkStats.map((pkStat, idx) => (
             <Box key={idx} sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -63,7 +64,8 @@ const BaseStats = () => {
             </Box>
           ))}
         </Stack>
-    </Grid>
+      </Grid>
+    </Fade>
   );
 };
 

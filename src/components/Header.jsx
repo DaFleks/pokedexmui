@@ -1,4 +1,4 @@
-import { Grid, Typography, Box } from "@mui/material";
+import { Grid, Typography, Box, Fade } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useContext } from "react";
 import { PokemonContext } from "../contexts/PokemonContext";
@@ -8,7 +8,7 @@ import HeaderImage from "./HeaderImage";
 
 const Header = () => {
   const { primary, secondary } = useTheme().palette;
-  const { id, name, types } = useContext(PokemonContext);
+  const { id, name, types, active } = useContext(PokemonContext);
 
   const bgStr = `linear-gradient(180deg, ${primary.main} 0%,`;
   const background = types.length > 1 ? `${bgStr}${secondary.main} 80%)` : `${bgStr}${primary.dark})`;
@@ -35,14 +35,18 @@ const Header = () => {
   return (
     <Grid container>
       <Grid item xs={12} textAlign="center" sx={{ position: "relative" }}>
+        <Fade in={active} timeout={300}>
           <Box sx={HeaderWrap}></Box>
+        </Fade>
         <HeaderImage id={id} />
+        <Fade in={active} timeout={300}>
           <Box mb={3} textAlign="center">
             <Typography variant="h3">{capitalize(name)}</Typography>
             <Typography variant="p" sx={{ fontWeight: "bold", color: "grey" }}>
               {padZeroes(id)}
             </Typography>
           </Box>
+        </Fade>
       </Grid>
     </Grid>
   );
