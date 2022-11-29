@@ -1,9 +1,10 @@
 import { Fade, Box, Typography } from "@mui/material";
-import { usePokemonContext } from "../contexts/PokemonContext";
 import { padZeroes, capitalize } from "../utils/utilities";
 
-const HeaderText = () => {
-  const { id, name, active } = usePokemonContext();
+const HeaderText = (props) => {
+  //  Props
+  const { id, name, active } = props;
+
   return (
     <Fade in={active} timeout={300}>
       <Box mb={3} textAlign="center">

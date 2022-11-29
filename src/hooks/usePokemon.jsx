@@ -6,7 +6,7 @@ const usePokemon = (id) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const setData = async () => {
+    (async () => {
       const tempPokemonData = await fetchData(`https://pokeapi.co/api/v2/pokemon/${id}`);
       const speciesData = await fetchData(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
       const evolutionResponse = await fetchData(speciesData.evolution_chain.url);
@@ -14,10 +14,8 @@ const usePokemon = (id) => {
       setPokemonData(tempPokemonData);
       setEvolutionData(tempEvolutionData);
       setIsLoaded(true);
-    };
-    setData();
+    })();
   }, [id]);
-
   return [pokemonData, evolutionData, isLoaded, setIsLoaded];
 };
 

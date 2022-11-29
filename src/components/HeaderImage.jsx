@@ -1,9 +1,11 @@
 import { Box, Zoom } from "@mui/material";
-import { usePokemonContext } from "../contexts/PokemonContext";
 
-const HeaderImage = () => {
+const HeaderImage = (props) => {
+  //  Props
+  const { id, active } = props;
+
+  //  Base Image URL for official artwork.
   const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/`;
-  const { id, active } = usePokemonContext();
 
   return (
     <Zoom in={active} timeout={300}>

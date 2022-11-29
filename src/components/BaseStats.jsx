@@ -1,15 +1,27 @@
-import { Grid, Stack, Box, Typography, LinearProgress, Fade } from "@mui/material";
+import { Grid, Typography, Fade, Stack } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import { usePokemonContext } from "../contexts/PokemonContext";
+import Stat from "./Stat";
 
 const BaseStats = () => {
+  // Theme
   const theme = useTheme();
   const { primary } = theme.palette;
 
+  //  Context
   const { stats, active } = usePokemonContext();
+
+  //  State
+  const [pkStats, setPkStats] = useState([0, 0, 0, 0, 0, 0]);
+
+  //  Effect 
+  useEffect(() => {
+    animateStats();
+  }, [stats]);
+
+  //  Component Utilities
   const statNames = ["HP", "ATK", "DEF", "SP. ATK", "SP. DEF", "SPD"];
-  const getStatPercentage = (stat) => Math.round((stat / 255) * 100);
 
   const animateStats = () => {
     let count = 1;
@@ -26,18 +38,6 @@ const BaseStats = () => {
     }, 100);
   };
 
-  const progressStyle = {
-    fontSize: "0.75rem",
-    fontWeight: "bold",
-  };
-
-  //  State
-  const [pkStats, setPkStats] = useState([0, 0, 0, 0, 0, 0]);
-
-  useEffect(() => {
-    animateStats();
-  }, [stats]);
-
   return (
     <Fade in={active} timeout={300}>
       <Grid item xs={12} my={3}>
@@ -46,21 +46,7 @@ const BaseStats = () => {
         </Typography>
         <Stack>
           {pkStats.map((pkStat, idx) => (
-            <Box key={idx} sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <Box width="15%" textAlign="right">
-                <Typography color={primary.dark} variant="p" sx={progressStyle}>
-                  {statNames[idx]}
-                </Typography>
-              </Box>
-              <Box width="70%" px={3}>
-                <LinearProgress variant="determinate" value={getStatPercentage(pkStat)} />
-              </Box>
-              <Box width="15%">
-                <Typography color={primary.dark} variant="p" sx={progressStyle}>
-                  {pkStat.toFixed(0)}
-                </Typography>
-              </Box>
-            </Box>
+            <Stat key={idx} stat={pkStat} name={statNames[idx]} color={primary.dark} />
           ))}
         </Stack>
       </Grid>
