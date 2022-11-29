@@ -2,18 +2,13 @@ import { Box, Fade } from "@mui/material";
 
 const HeaderGradient = (props) => {
   //  Props
-  const { active,nTypes, primary, secondary } = props;
+  const { active, firstColor, secondColor } = props;
 
-  //  String to set the linear-gradient for the header background color(s),
-  //  if the Pokemon has 1 type, it's a combo of the single type color with a darker done,
-  //  if the pokemon has 2 types, the gradient is a combo of both type colors.
-  const bgStr = `linear-gradient(180deg, ${primary.main} 0%,`;
-  
   const HeaderWrap = {
-    background: nTypes > 1 ? `${bgStr}${secondary.main} 80%)` : `${bgStr}${primary.dark})`,
+    background: `linear-gradient(180deg, ${firstColor} 0%,${secondColor} 80%)`,
     fallbacks: [
       {
-        background: primary.main,
+        background: firstColor,
       },
     ],
     borderBottomLeftRadius: "50%",
