@@ -7,6 +7,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { usePokemonContext } from "../contexts/PokemonContext";
 import { useNavContext } from "../contexts/NavContext";
 import useChangePokemon from "../hooks/useChangePokemon";
+import { Link } from "react-router-dom";
 
 const NavBottom = () => {
   const { id } = usePokemonContext();
@@ -20,20 +21,29 @@ const NavBottom = () => {
   return (
     <Paper elevation={3} sx={{ position: "fixed", bottom: "0", width: "100%", overflow: "hidden", borderRadius: "0" }}>
       <BottomNavigation value={navOption} onChange={handleChange}>
-        <BottomNavigationAction icon={<SearchIcon />}></BottomNavigationAction>
+        {/* Search */}
+        <BottomNavigationAction component={Link} to="/search" icon={<SearchIcon />}></BottomNavigationAction>
+
+        {/* Left */}
         <BottomNavigationAction
           onClick={() => {
             changePokemon(id - 1);
           }}
           icon={<ArrowLeftIcon />}
         ></BottomNavigationAction>
-        <BottomNavigationAction icon={<CatchingPokemonIcon />}></BottomNavigationAction>
+
+        {/* Current Pokemon */}
+        <BottomNavigationAction onClick={() => changePokemon(id)} icon={<CatchingPokemonIcon />}></BottomNavigationAction>
+
+        {/* Right */}
         <BottomNavigationAction
           onClick={() => {
             changePokemon(id + 1);
           }}
           icon={<ArrowRightIcon />}
         ></BottomNavigationAction>
+
+        {/* Settings */}
         <BottomNavigationAction icon={<SettingsIcon />}></BottomNavigationAction>
       </BottomNavigation>
     </Paper>

@@ -24,9 +24,10 @@ const Pokedex = () => {
     setNavOption(2);
 
     //  If transitions are not active, activate them after 300ms (waiting for exit transition to finish).
-    setTimeout(() => {
-      !active && setActive(true);
-    }, 300);
+    if (!active)
+      setTimeout(() => {
+        setActive(true);
+      }, 300);
   }, [id]);
 
   // Styles
