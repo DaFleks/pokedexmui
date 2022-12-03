@@ -39,7 +39,7 @@ const Pokedex = () => {
     flexDirection: "column",
     justifyContent: isLoaded ? "" : "center",
     alignItems: isLoaded ? "" : "center",
-    pb: 6,
+    mb: 6,
   };
 
   return (

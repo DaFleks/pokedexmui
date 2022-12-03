@@ -5,6 +5,7 @@ import NavProvider from './contexts/NavContext';
 import PokemonProvider from './contexts/PokemonContext';
 import Pokedex from './pages/Pokedex';
 import Search from './pages/Search';
+import Settings from './pages/Settings';
 
 function App() {
   return (
@@ -13,12 +14,12 @@ function App() {
         <NavProvider>
           <PokemonProvider>
             <Box sx={{
-              display: 'flex', flexDirection: 'column', minHeight: '100vh'
+              display: 'flex', flexDirection: 'column', minHeight: '100vh', minWidth: '300px'
             }}>
               <Routes>
                 <Route path="/search" element={<Search />}></Route>
                 <Route path="*" element={<Pokedex />}></Route>
-                {/* TODO: SETTINGS */}
+                <Route path="/settings" element={<Settings />}></Route>
               </Routes>
               <NavBottom />
             </Box>

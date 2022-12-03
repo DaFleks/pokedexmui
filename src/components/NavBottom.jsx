@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Paper, BottomNavigation, BottomNavigationAction } from "@mui/material";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
@@ -7,7 +8,6 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { usePokemonContext } from "../contexts/PokemonContext";
 import { useNavContext } from "../contexts/NavContext";
 import useChangePokemon from "../hooks/useChangePokemon";
-import { Link } from "react-router-dom";
 
 const NavBottom = () => {
   const { id } = usePokemonContext();
@@ -44,7 +44,7 @@ const NavBottom = () => {
         ></BottomNavigationAction>
 
         {/* Settings */}
-        <BottomNavigationAction icon={<SettingsIcon />}></BottomNavigationAction>
+        <BottomNavigationAction component={Link} to="/settings" icon={<SettingsIcon />}></BottomNavigationAction>
       </BottomNavigation>
     </Paper>
   );

@@ -1,4 +1,4 @@
-import { Grid, Paper, Typography, Chip } from "@mui/material";
+import { Grid, Paper, Typography, Fade, Box } from "@mui/material";
 import { capitalize } from "../utils/utilities";
 import * as typeColors from "../data/typeColors.json";
 import useChangePokemon from "../hooks/useChangePokemon";
@@ -23,16 +23,26 @@ const PokemonResult = (props) => {
     overflow: "hidden",
     fontSize: ".75rem",
     fontWeight: "bold",
-    color: '#5e5e5e',
+    color: "#5e5e5e",
   };
   return (
-    <Grid item xs={4}>
-      <Paper elevation={6} sx={pokemonStyle} onClick={() => {changePokemon(id)}}>
-        <img src={`${url}${id}.png`} alt={name} width="100%" />
-        {/* <Chip label={id} color="primary"></Chip> */}
-        <Typography variant="p">{capitalize(name)}</Typography>
-      </Paper>
-    </Grid>
+    <Fade in={true} timeout={500}>
+      <Grid item xs={4}>
+        <Paper
+          elevation={6}
+          sx={pokemonStyle}
+          onClick={() => {
+            changePokemon(id);
+          }}
+        >
+          <img src={`${url}${id}.png`} alt={name} width="100%" />
+          <Box sx={{ backgroundColor: `rgba(100,100,100,0.25)`, width: "100%", color: "white", borderRadius: "5%", py: 0.5 }}>
+            <Typography display="block" variant="p">#{id}</Typography>
+            <Typography variant="p">{capitalize(name)}</Typography>
+          </Box>
+        </Paper>
+      </Grid>
+    </Fade>
   );
 };
 
