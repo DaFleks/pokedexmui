@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, TextField } from "@mui/material";
 import pokemonList from "../data/pokemonSearchList.json";
 import PokemonResult from "../components/PokemonResult";
@@ -8,9 +8,16 @@ const Search = () => {
 
   return (
     <>
-      <Grid container p={3} spacing={2} maxWidth={"md"}>
+      <Grid container p={3} spacing={2} maxWidth={"sm"}>
         <Grid item xs={12}>
-          <TextField id="outlined-basic" label="Search Pokemon" variant="outlined" autoComplete="off" fullWidth onChange={(e) => setQuery(e.target.value)} />
+          <TextField
+            id="outlined-basic"
+            label="Search Pokemon"
+            variant="outlined"
+            autoComplete="off"
+            fullWidth
+            onChange={(e) => setQuery(e.target.value.toLowerCase())}
+          />
         </Grid>
 
         {query.length > 2 &&
